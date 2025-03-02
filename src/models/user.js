@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 var validator = require("validator");
-const jwt  = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 const userSchema = mongoose.Schema(
@@ -31,13 +31,14 @@ const userSchema = mongoose.Schema(
       required: true,
       validate(value) {
         if (!validator.isEmail(value)) {
-          throw new Error("email is not valid"+value);
+          throw new Error("email is not valid" + value);
         }
       },
     },
     photoUrl: {
       type: String,
-      default: "abc.png",
+      default:
+        "https://static.vecteezy.com/system/resources/thumbnails/005/129/844/small_2x/profile-user-icon-isolated-on-white-background-eps10-free-vector.jpg",
     },
     password: {
       type: String,
@@ -57,19 +58,18 @@ const userSchema = mongoose.Schema(
 userSchema.methods.getJWT = async function () {
   const user = this;
 
-  const token = await jwt.sign({ _id: user._id }, "Dev@Tinder$431",{expiresIn: "1d"});
-  return token
-}
+  const token = await jwt.sign({ _id: user._id }, "Dev@Tinder$431", {
+    expiresIn: "1d",
+  });
+  return token;
+};
 
 userSchema.methods.Validatepass = async function (password) {
-   const user = this;
+  const user = this;
 
-   const isPasswordCorrect = await bcrypt.compare(password, this.password);
-   
-   return isPasswordCorrect;
+  const isPasswordCorrect = await bcrypt.compare(password, this.password);
 
-}
-
-
+  return isPasswordCorrect;
+};
 
 module.exports = mongoose.model("User", userSchema);

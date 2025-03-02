@@ -26,7 +26,6 @@ const validatedit = (req) => {
   const isEditAllowed = Object.keys(req.body).every((field) =>
     allowedEdit.includes(field)
   );
-  console.log(isEditAllowed);
 
   return isEditAllowed;
 };
