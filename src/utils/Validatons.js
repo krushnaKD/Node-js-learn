@@ -15,6 +15,7 @@ const SignupValidation = (req) => {
 
 const validatedit = (req) => {
   const allowedEdit = [
+    "firstName",
     "lastName",
     "about",
     "gender",
