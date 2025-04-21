@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 const app = express();
 const cors = require("cors");
 
+const port = process.env.PORT || 4000
 app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
@@ -24,7 +25,7 @@ app.use("/", userRouter);
 mongoDB()
   .then(() => {
     console.log("connected succesfully");
-    app.listen(process.env.PORT, () => {
+    app.listen(port, () => {
       console.log("req is listen on 3000");
     });
   })
