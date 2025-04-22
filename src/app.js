@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const mongoDB = require("./config/database");
 const { SignupValidation } = require("./utils/Validatons");
@@ -7,7 +8,9 @@ const jwt = require("jsonwebtoken");
 const app = express();
 const cors = require("cors");
 
-const port = process.env.PORT || 4000
+
+const port = process.env.PORT || 4000;
+
 app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
@@ -22,13 +25,19 @@ app.use("/", profileRouter);
 app.use("/", requestRouter);
 app.use("/", userRouter);
 
+
+
+
 mongoDB()
   .then(() => {
     console.log("connected succesfully");
     app.listen(port, () => {
-      console.log("req is listen on 3000");
+      console.log(`🚀 Server is listening on port ${port}`);
+
     });
   })
   .catch((err) => {
-    console.log("not Connected");
+    console.error("❌ MongoDB connection failed:", err.message);
   });
+  
+
