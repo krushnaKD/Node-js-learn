@@ -63,14 +63,19 @@ paymentRouter.post("/payment/webhook", async (req, res) => {
     }
 
     const paymentDetails = req.body.payload.payment.entity;
+  
+    console.log( "paymentDetails",paymentDetails);
+    
 
     const payment = await paymentSchema.findOne({
-      orderId: paymentDetails.order_id, // fixed from _id
+      orderId: paymentDetails.order_id, 
     });
 
     if (!payment) {
       return res.status(404).json({ msg: "Payment not found" });
     }
+    console.log("payment", payment);
+    
 
     payment.status = paymentDetails.status;
     await payment.save();
