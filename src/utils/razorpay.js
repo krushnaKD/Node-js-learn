@@ -7,4 +7,4 @@ var instance = new Razorpay({
 
   module.exports = instance;
 
-  //
+  //# CLIENT_URL=http://localhost:5173/
