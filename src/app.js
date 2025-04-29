@@ -11,8 +11,8 @@ const cors = require("cors");
 
 const port = process.env.PORT || 4000;
 const allowedOrigins = [
-  "http://localhost:5173",                 // for local dev
-  "https://devtinderrr.netlify.app"        // your deployed frontend
+  "http://localhost:5173",                
+  "https://devtinderrr.netlify.app"       
 ];
 
 

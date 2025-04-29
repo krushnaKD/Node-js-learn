@@ -11,17 +11,17 @@ const paymentSchema = new mongoose.Schema(
     paymentID: {
       type: String,
     },
-    orderID: {
+    orderId: {
       type: String,
-      require: true,
+      required: true
     },
     currency: {
       type: String,
-      require: true,
+      required: true,
     },
     status: {
       type: String,
-      require: true,
+      required: true,
     },
     amount: {
       type: Number,

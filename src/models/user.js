@@ -52,6 +52,13 @@ const userSchema = mongoose.Schema(
     about:{
       type:String,
       default:"this is default about"
+    },
+    isPremium:{
+      type:Boolean,
+      default:false
+    },
+    membershiptype:{
+      type:String
     }
   },
   {

@@ -46,4 +46,3 @@ module.exports = {
   Validatepass,
 };
 
-// $2b$10$S55b7R5dH9c38f2GDcgsteAw1fbkE6i01AJr60UgXqq5J4hEK28Zi
