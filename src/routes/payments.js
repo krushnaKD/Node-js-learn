@@ -49,7 +49,9 @@ paymentRouter.post("/payment/create", userAuth, async (req, res) => {
 
 paymentRouter.post("/payment/webhook", async (req, res) => {
   try {
-    const webhookSignature = req.headers['x-razorpay-signature'];
+    const webhookSignature = req.get('X-Razorpay-Signature');
+    console.log("webhooksignature ", webhookSignature);
+    
     const iswebhookValid = validateWebhookSignature(
       JSON.stringify(req.body),
       webhookSignature,
@@ -80,7 +82,7 @@ paymentRouter.post("/payment/webhook", async (req, res) => {
     }
 
     user.isPremium = true;
-    user.membershiptype = payment.notes.membershipType; // fixed typo
+    user.membershiptype = payment.notes.membershipType; 
     await user.save();
     console.log("✅ User updated:", user);
 
